@@ -19,7 +19,11 @@ def extract_fields(files, data_frame):
             file_fields_as_table = extract_auc_attrs(files[key])
             file_fields_as_table['price'] = reorder_prices_by_jn(prices_with_jns, file_fields_as_table['journalNumber'])
         files[key].close()
-    result = pd.DataFrame(file_fields_as_table)
+    try:
+        result = pd.DataFrame(file_fields_as_table)
+    except ValueError:
+        print('This auc is incorrect: \n', file_fields_as_table, '\n')
+        return data_frame
     return data_frame.append(result)
 
 
