@@ -19,7 +19,7 @@ def read_dates_and_protocols(file_name):
     for date in dates_and_protocols:
         print('Date:', date, 'protocol numbers:', dates_and_protocols[date])
 
-    return dates_and_protocols
+    return dates_and_protocols, len(protocols)
 
 
 def write_fields_into_excel(file_name, fields):
